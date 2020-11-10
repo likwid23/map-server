@@ -5,9 +5,11 @@ const messages = require('./messages');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.json({
-    message: 'API - 👋🌎🌍🌏' 
-  });
+  messages
+    .find()
+    .then(allMessages => {
+      res.json(allMessages);
+    });
 });
 
 router.use('/messages', messages);
