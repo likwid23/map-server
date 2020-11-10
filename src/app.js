@@ -16,9 +16,11 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄'
-  });
+  messages
+    .find()
+    .then(allMessages => {
+      res.json(allMessages);
+    });
 });
 
 app.use('/api/v1', api);
